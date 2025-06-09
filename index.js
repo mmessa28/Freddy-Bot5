@@ -9,14 +9,14 @@ const client = new Client({
 let warnedUsers = {};
 
 const badWords = ['idiot', 'hurensohn', 'fuck', 'bastard'];
-const groupLinkRegex = /chat\.whatsapp\.com\/[A-Za-z0-9]+/;
+const groupLinkRegex = /chat\\.whatsapp\\.com\\/[A-Za-z0-9]+/;
 
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
-    console.log('Freddy ist aktiv!');
+    console.log('✅ Freddy ist aktiv!');
 });
 
 client.on('message_create', async msg => {
@@ -27,7 +27,7 @@ client.on('message_create', async msg => {
         const user = msg.author || msg.from;
         const content = msg.body.toLowerCase();
 
-        // Fremde Gruppenlinks
+        // Fremde WhatsApp-Gruppenlinks
         if (groupLinkRegex.test(content)) {
             await chat.removeParticipants([user]);
             await chat.sendMessage(`🚫 @${user.split('@')[0]} wurde wegen Fremdwerbung entfernt.`, { mentions: [await msg.getContact()] });
