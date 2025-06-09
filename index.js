@@ -9,7 +9,7 @@ const client = new Client({
 let warnedUsers = {};
 
 const badWords = ['idiot', 'hurensohn', 'fuck', 'bastard'];
-const groupLinkRegex = /chat\\.whatsapp\\.com\\/[A-Za-z0-9]+/;
+const groupLinkRegex = /chat\.whatsapp\.com\/[A-Za-z0-9]+/;
 
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
